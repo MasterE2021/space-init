@@ -25,9 +25,9 @@
 
     <!--  子模块  -->
     <modules>
-        <!--        <module>space-init-api</module>-->
-        <!--        <module>space-init-service</module>-->
-        <!--        <module>space-init-repository</module>-->
+        <module>space-init-api</module>
+        <module>space-init-service</module>
+        <module>space-init-repository</module>
         <module>space-init-starter</module>
         <module>space-init-web</module>
     </modules>
@@ -75,6 +75,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.32</version>
         </dependency>
 
     </dependencies>

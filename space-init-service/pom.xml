@@ -11,19 +11,18 @@
     </parent>
 
     <groupId>com.master</groupId>
-    <artifactId>space-init-web</artifactId>
+    <artifactId>space-init-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
     <dependencies>
         <dependency>
             <groupId>com.master</groupId>
-            <artifactId>space-init-service</artifactId>
+            <artifactId>space-init-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.master</groupId>
-            <artifactId>space-init-service</artifactId>
+            <artifactId>space-init-repository</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

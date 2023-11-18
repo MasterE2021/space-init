@@ -1,5 +1,6 @@
 package com.master.starter;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,10 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  * @date 2023-11-18 10:43
  */
-// @SpringBootApplication
-@SpringBootApplication(scanBasePackages = {"com.master.web.controller"})
-public class Application {
+@SpringBootApplication(scanBasePackages = {"com.master.web.controller", "com.master.service"})
+@MapperScan(basePackages = {"com.master.repository.mapper"})
+public class App {
+
+
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(App.class, args);
     }
 }

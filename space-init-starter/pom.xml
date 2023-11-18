@@ -17,6 +17,11 @@
 
     <!--  依赖  -->
     <dependencies>
+        <!--  启动类  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.master</groupId>
             <artifactId>space-init-web</artifactId>

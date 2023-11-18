@@ -1,4 +1,4 @@
-package com.master.web.controller;
+package com.master.web.controller.demo;
 
 
 import com.alibaba.fastjson.JSON;

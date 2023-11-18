@@ -5,4 +5,4 @@
  * @author yiqunjie
  * @date 2023-11-18 13:55
  */
-package com.master.api.utils;
+package com.master.common.utils;

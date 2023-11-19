@@ -15,12 +15,14 @@ spring:
 
 logging:
     level:
+        # root: DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+        root: DEBUG
         com.master.springboot:
-            #指定打印对应文件夹的日志，并设置打印的日志的级别 （com.master.springboot.mapper包）
+            # 指定打印对应文件夹的日志，并设置打印的日志的级别 （com.master.springboot.mapper包）
             mapper: debug
     file:
-        #指定日志文件生成的位置
-        name: D:/log/space-init/spring.log
+        # 指定日志文件生成的位置
+        name: ./log/space-init.log
 
 
 

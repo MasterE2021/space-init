@@ -1,8 +1,8 @@
 package com.master.web.controller.demo;
 
 
-import com.alibaba.fastjson.JSON;
 import com.master.api.dto.user.UserDTO;
+import com.master.common.result.BaseResult;
 import com.master.service.user.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/")
 public class HealthController {
 
     @Resource
@@ -28,8 +29,8 @@ public class HealthController {
     }
 
     @RequestMapping(value = "/getUser")
-    public String getUser() {
+    public BaseResult<UserDTO> getUser() {
         UserDTO user = userService.getUser();
-        return JSON.toJSONString(user);
+        return BaseResult.success(user);
     }
 }

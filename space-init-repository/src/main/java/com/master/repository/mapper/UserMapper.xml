@@ -14,7 +14,7 @@
 
     <select id="getUserPO" resultMap="userPOMap">
         SELECT user_id_, user_no_, user_name_, phone_, email_
-        FROM sys_user
+        FROM rbac_user
         WHERE user_id_ = #{userId}
     </select>
 

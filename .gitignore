@@ -4,6 +4,7 @@ log/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+*.bkp
 
 ### STS ###
 .apt_generated

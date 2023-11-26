@@ -44,7 +44,7 @@ CREATE TABLE `rbac_role`
 DROP TABLE IF EXISTS `rbac_user_role`;
 CREATE TABLE `rbac_user_role`
 (
-    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`      varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `user_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户id',
     `role_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -57,7 +57,7 @@ CREATE TABLE `rbac_user_role`
 DROP TABLE IF EXISTS `rbac_role_auth`;
 CREATE TABLE `rbac_role_auth`
 (
-    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`      varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `role_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
     `auth_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '权限id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -109,7 +109,7 @@ CREATE TABLE `rbac_team`
 DROP TABLE IF EXISTS `rbac_user_union`;
 CREATE TABLE `rbac_user_union`
 (
-    `id_`        varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `user_id_`  varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户id',
     `union_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '组织id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -123,7 +123,7 @@ CREATE TABLE `rbac_user_union`
 DROP TABLE IF EXISTS `rbac_user_position`;
 CREATE TABLE `rbac_user_position`
 (
-    `id_`           varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`          varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `user_id_`     varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户id',
     `position_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '职位id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -137,7 +137,7 @@ CREATE TABLE `rbac_user_position`
 DROP TABLE IF EXISTS `rbac_user_team`;
 CREATE TABLE `rbac_user_team`
 (
-    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`      varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `user_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户id',
     `team_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '团队id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -151,7 +151,7 @@ CREATE TABLE `rbac_user_team`
 DROP TABLE IF EXISTS `rbac_union_role`;
 CREATE TABLE `rbac_union_role`
 (
-    `id_`        varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `union_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '组织id',
     `role_id_`  varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -165,7 +165,7 @@ CREATE TABLE `rbac_union_role`
 DROP TABLE IF EXISTS `rbac_position_role`;
 CREATE TABLE `rbac_position_role`
 (
-    `id_`           varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`          varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `position_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '职位id',
     `role_id_`     varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -178,7 +178,7 @@ CREATE TABLE `rbac_position_role`
 DROP TABLE IF EXISTS `rbac_team_role`;
 CREATE TABLE `rbac_team_role`
 (
-    `id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
+    `id_`      varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'id',
     `team_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '团队id',
     `role_id_` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色id',
     PRIMARY KEY (`id_`) USING BTREE
@@ -191,8 +191,8 @@ CREATE TABLE `rbac_team_role`
 DROP TABLE IF EXISTS `rbac_auth_exclusion`;
 CREATE TABLE `rbac_auth_exclusion`
 (
-    `auth_id_`       varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '权限id',
-    `auth_id_obj_`   varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '互斥权限id',
+    `auth_id_`        varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '权限id',
+    `auth_id_obj_`    varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '互斥权限id',
     `exclusion_desc_` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '权限互斥说明',
     PRIMARY KEY (`auth_id_`) USING BTREE
 ) ENGINE = InnoDB

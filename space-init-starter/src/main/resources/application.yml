@@ -1,28 +1,28 @@
 server:
-    port: 9010  #设置请求端口
-    servlet:
-        context-path: /  #指定 Tomcat的请求路径 http://localhost:8081/spring-boot-demo/+ 地址
-        encoding:
-            charset: UTF-8    #设置 Tomcat 编码格式
+  port: 9010  #设置请求端口
+  servlet:
+    context-path: /  #指定 Tomcat的请求路径 http://localhost:8081/spring-boot-demo/+ 地址
+    encoding:
+      charset: UTF-8    #设置 Tomcat 编码格式
 
 
 spring:
-    application:
-        name: space-init-web
-    profiles:
-        # 加载不同模块的配置文件
-        active: mapper
+  application:
+    name: space-init-web
+  profiles:
+    # 加载不同模块的配置文件
+    active: mapper
 
 logging:
-    level:
-        # root: DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
-        root: DEBUG
-        com.master.springboot:
-            # 指定打印对应文件夹的日志，并设置打印的日志的级别 （com.master.springboot.mapper包）
-            mapper: debug
-    file:
-        # 指定日志文件生成的位置
-        name: ./log/space-init.log
+  level:
+    # root: DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
+    root: DEBUG
+    com.master.springboot:
+      # 指定打印对应文件夹的日志，并设置打印的日志的级别 （com.master.springboot.mapper包）
+      mapper: debug
+  file:
+    # 指定日志文件生成的位置
+    name: ./log/space-init.log
 
 
 

@@ -1,16 +1,30 @@
 spring:
-    datasource:
-        # mysql的配置加载驱动类信息
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        # mysql的连接信息
-        url: jdbc:mysql://119.91.154.135:3308/space-init?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&useSSL=false&serverTimezone=GMT
-        # 用户名
-        username: root
-        # 密码
-        password: daohaosima...123
+  datasource:
+    # mysql的配置加载驱动类信息、mysql的连接信息、用户名、密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.91.154.135:3308/space-init?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai&
+    username: root
+    password: daohaosima...123
+
+    # JDBC连接池配置
+    hikari:
+      #
+      pool-name: space-init
+      # 请求连接的超时时间
+      connection-timeout: 60000
+      # 连接的最长生命周期(生命周期,单位ms)。不能小于30秒，否则默认回到1800秒
+      max-lifetime: 60000
+      # 尝试保持连接的频率
+      keepalive-time: 1750000
+      # 连接验证sql
+      connection-test-query: SELECT 1
+      # 最大连接数量
+      maximum-pool-size: 1000
+      # 数据库连接池保持数据连接的最小数量。为了获得最大的性能和对峰值需求的响应，建议不要设置此值，默认值:与maximumPoolSize相同
+      minimum-idle: 2
 
 mybatis:
-    mapper-locations: classpath:com/master/repository/mapper/*Mapper.xml
+  mapper-locations: classpath:com/master/repository/mapper/*Mapper.xml
 
 
 

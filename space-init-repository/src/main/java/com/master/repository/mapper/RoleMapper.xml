@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.RolePO">
+        <id property="roleId" column="role_id_" jdbcType="VARCHAR"/>
+        <result property="roleName" column="role_name_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select role_id_,
+               role_name_,
+               parent_id_
+        from rbac_role
+        where role_id_ = #{roleId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_role
+        where role_id_ = #{roleId}
+    </delete>
+
+
+    <insert id="insert" keyColumn="role_id_" keyProperty="roleId" parameterType="com.master.repository.entity.RolePO"
+            useGeneratedKeys="true">
+        insert into rbac_role
+            (role_id_, role_name_, parent_id_)
+        values (#{roleId}, #{roleName}, #{parentId})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="role_id_" keyProperty="roleId"
+            parameterType="com.master.repository.entity.RolePO"
+            useGeneratedKeys="true">
+        insert into rbac_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id_,
+            </if>
+            <if test="roleName != null">
+                role_name_,
+            </if>
+            <if test="parentId != null">
+                parent_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+            <if test="roleName != null">
+                #{roleName},
+            </if>
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.RolePO">
+        update rbac_role
+        <set>
+            <if test="roleName != null">
+                role_name_ = #{roleName},
+            </if>
+            <if test="parentId != null">
+                parent_id_ = #{parentId},
+            </if>
+        </set>
+        where role_id_ = #{roleId}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.RolePO">
+        update rbac_role
+        set role_name_ = #{roleName},
+            parent_id_ = #{parentId}
+        where role_id_ = #{roleId}
+    </update>
+</mapper>

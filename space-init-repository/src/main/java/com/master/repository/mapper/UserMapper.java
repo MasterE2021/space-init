@@ -4,6 +4,8 @@ import com.master.repository.entity.UserPO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author yiqunjie
  * @description
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserMapper {
+
+    List<UserPO> listUserPO();
 
     UserPO getUserPO(@Param("userId") String userId);
 }

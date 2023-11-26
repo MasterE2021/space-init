@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.master.repository.mapper.UserMapper">
-
     <resultMap id="userPOMap" type="com.master.repository.entity.UserPO">
         <id column="user_id_" property="userId" jdbcType="VARCHAR"/>
         <id column="user_no_" property="userNo" jdbcType="VARCHAR"/>
@@ -12,11 +11,14 @@
         <id column="email_" property="email" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="listUserPO" resultMap="userPOMap">
+        SELECT user_id_, user_no_, user_name_, phone_, email_
+        FROM rbac_user
+    </select>
+
     <select id="getUserPO" resultMap="userPOMap">
         SELECT user_id_, user_no_, user_name_, phone_, email_
         FROM rbac_user
         WHERE user_id_ = #{userId}
     </select>
-
-
 </mapper>

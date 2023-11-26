@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.TeamRoleMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.TeamRolePO">
+        <id property="id" column="id_" jdbcType="VARCHAR"/>
+        <result property="teamId" column="team_id_" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id_,
+               team_id_,
+               role_id_
+        from rbac_team_role
+        where id_ = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_team_role
+        where id_ = #{id}
+    </delete>
+
+
+    <insert id="insert" keyColumn="id_" keyProperty="id" parameterType="com.master.repository.entity.TeamRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_team_role
+            (id_, team_id_, role_id_)
+        values (#{id}, #{teamId}, #{roleId})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="id_" keyProperty="id"
+            parameterType="com.master.repository.entity.TeamRolePO" useGeneratedKeys="true">
+        insert into rbac_team_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id_,
+            </if>
+            <if test="teamId != null">
+                team_id_,
+            </if>
+            <if test="roleId != null">
+                role_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="teamId != null">
+                #{teamId},
+            </if>
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.TeamRolePO">
+        update rbac_team_role
+        <set>
+            <if test="teamId != null">
+                team_id_ = #{teamId},
+            </if>
+            <if test="roleId != null">
+                role_id_ = #{roleId},
+            </if>
+        </set>
+        where id_ = #{id}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.TeamRolePO">
+        update rbac_team_role
+        set team_id_ = #{teamId},
+            role_id_ = #{roleId}
+        where id_ = #{id}
+    </update>
+</mapper>

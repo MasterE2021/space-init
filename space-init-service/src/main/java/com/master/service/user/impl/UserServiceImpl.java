@@ -1,7 +1,8 @@
 package com.master.service.user.impl;
 
-import com.master.api.dto.user.UserDTO;
 import com.master.api.vo.UserVO;
+import com.master.common.exception.BusinessException;
+import com.master.common.utils.Tools;
 import com.master.repository.entity.UserPO;
 import com.master.repository.mapper.UserMapper;
 import com.master.service.user.UserService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author yiqunjie
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService {
         List<UserPO> userPOs = userMapper.listUserPO();
 
         List<UserVO> userVOs = new ArrayList<>();
-        userPOs.stream().forEach(po -> {
+        userPOs.forEach(po -> {
             UserVO userVO = new UserVO();
             userVO.setUserId(po.getUserId());
             userVO.setUserNo(po.getUserNo());
@@ -39,15 +41,50 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUser() {
-        UserPO userPO = userMapper.getUserPO("1");
+    public UserVO getUser(String userId) {
+        UserPO userPO = userMapper.getUserPO(userId);
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUserId(userPO.getUserId());
-        userDTO.setUserNo(userPO.getUserNo());
-        userDTO.setUserName(userPO.getUserName());
-        userDTO.setPhone(userPO.getPhone());
-        userDTO.setEmail(userPO.getEmail());
-        return userDTO;
+        UserVO vo = new UserVO();
+        vo.setUserId(userPO.getUserId());
+        vo.setUserNo(userPO.getUserNo());
+        vo.setUserName(userPO.getUserName());
+        vo.setPhone(userPO.getPhone());
+        vo.setEmail(userPO.getEmail());
+        return vo;
+    }
+
+    @Override
+    public void insertUser(UserVO vo) {
+        UserPO po = new UserPO();
+        po.setUserId(String.valueOf(UUID.randomUUID()));
+        po.setUserNo(vo.getUserNo());
+        po.setUserName(vo.getUserName());
+        po.setPhone(vo.getPhone());
+        po.setEmail(vo.getEmail());
+        userMapper.insertUserPO(po);
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        UserPO userPO = userMapper.getUserPO(userId);
+        if (Tools.isEmpty(userPO)){
+            throw new BusinessException(200, "该用户不存在或已经删除");
+        }
+        userMapper.deleteUserPO(userId);
+    }
+
+    @Override
+    public void updateUser(UserVO vo) {
+        UserPO oldUserPO = userMapper.getUserPO(vo.getUserId());
+        if (Tools.isEmpty(oldUserPO)){
+            throw new BusinessException(200, "该用户不存在或已经删除");
+        }
+        
+        UserPO userPO = new UserPO();
+        userPO.setUserId(vo.getUserId());
+        userPO.setUserName(vo.getUserName());
+        userPO.setPhone(vo.getPhone());
+        userPO.setEmail(vo.getEmail());
+        userMapper.updateUserPO(userPO);
     }
 }

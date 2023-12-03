@@ -1,7 +1,8 @@
 package com.master.common.result;
 
-import com.master.common.exception.ExceptionCode;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.master.common.exception.BusinessException;
+import com.master.common.exception.ExceptionCode;
 import lombok.Data;
 import org.springframework.util.Assert;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
  * @date 2023-11-18 19:47
  */
 @Data
+@JsonPropertyOrder({"code", "message", "data"})
 public class BaseResult<T> implements Serializable {
 
     /**

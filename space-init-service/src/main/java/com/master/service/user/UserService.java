@@ -1,6 +1,5 @@
 package com.master.service.user;
 
-import com.master.api.dto.user.UserDTO;
 import com.master.api.vo.UserVO;
 
 import java.util.List;
@@ -14,5 +13,11 @@ public interface UserService {
 
     List<UserVO> listUser();
 
-    UserDTO getUser();
+    UserVO getUser(String userId);
+
+    void insertUser(UserVO userVO);
+
+    void deleteUser(String userId);
+
+    void updateUser(UserVO vo);
 }

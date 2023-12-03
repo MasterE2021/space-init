@@ -14,6 +14,7 @@
     <select id="listUserPO" resultMap="userPOMap">
         SELECT user_id_, user_no_, user_name_, phone_, email_
         FROM rbac_user
+        ORDER BY update_time_ DESC
     </select>
 
     <select id="getUserPO" resultMap="userPOMap">
@@ -21,4 +22,41 @@
         FROM rbac_user
         WHERE user_id_ = #{userId}
     </select>
+
+    <insert id="insertUserPO">
+        insert into rbac_user
+        (user_id_, user_no_, user_name_, phone_, email_, create_time_, update_time_)
+            value (#{po.userId}, #{po.userNo}, #{po.userName}, #{po.phone}, #{po.email}, now(), now())
+    </insert>
+
+    <insert id="batchInsertUserPO">
+        insert into rbac_user
+        (user_id_, user_no_, user_name_, phone_, email_)
+        value
+        <foreach collection="pos" item="po" separator="," open="(" close=")">
+            (#{po.userId}, #{po.userNo}, #{po.userName}, #{po.phone}, #{po.email})
+        </foreach>
+    </insert>
+
+    <delete id="deleteUserPO">
+        delete
+        from rbac_user
+        where user_id_ = #{id}
+    </delete>
+
+    <update id="updateUserPO">
+        update rbac_user
+        set
+        <if test="po.userName != null and po.userName != ''">
+            user_name_ = #{po.userName},
+        </if>
+        <if test="po.phone != null and po.phone != ''">
+            phone_ = #{po.phone},
+        </if>
+        <if test="po.email != null and po.email != ''">
+            email_ = #{po.email},
+        </if>
+        update_time_ = now()
+        where user_id_ = #{po.userId}
+    </update>
 </mapper>

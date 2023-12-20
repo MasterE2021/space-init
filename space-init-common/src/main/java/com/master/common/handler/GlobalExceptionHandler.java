@@ -2,13 +2,14 @@ package com.master.common.handler;
 
 import com.master.common.exception.BusinessException;
 import com.master.common.result.BaseResult;
-import jakarta.servlet.ServletException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.servlet.ServletException;
 
 /**
  * 全局异常处理

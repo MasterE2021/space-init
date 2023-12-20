@@ -6,9 +6,9 @@ import com.master.common.utils.Tools;
 import com.master.repository.entity.UserPO;
 import com.master.repository.mapper.UserMapper;
 import com.master.service.user.UserService;
-import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

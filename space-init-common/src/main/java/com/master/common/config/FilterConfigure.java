@@ -1,10 +1,10 @@
-package com.master.common.filter;
+package com.master.common.config;
 
-import com.master.common.filter.cat.CatServletFilter;
+import com.dianping.cat.servlet.CatFilter;
 import com.master.common.filter.repeatable.RepeatableFilter;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author yiqunjie
@@ -12,14 +12,14 @@ import org.springframework.context.annotation.Bean;
  * @date 2023-12-19 15:23
  */
 
-@AutoConfiguration
+@Configuration
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class FilterConfigure {
 
     @Bean
     public FilterRegistrationBean catFilter() {
-        FilterRegistrationBean registration = new FilterRegistrationBean<>();
-        registration.setFilter(new CatServletFilter());
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new CatFilter());
         registration.addUrlPatterns("/*");
         registration.setName("catFilter");
         registration.setOrder(1);
@@ -28,7 +28,7 @@ public class FilterConfigure {
 
     @Bean
     public FilterRegistrationBean repeatableFilter() {
-        FilterRegistrationBean registration = new FilterRegistrationBean<>();
+        FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new RepeatableFilter());
         registration.addUrlPatterns("/*");
         registration.setName("repeatableFilter");

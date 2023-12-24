@@ -10,7 +10,7 @@ import java.util.Map;
  * @description
  * @date 2023-12-03 21:49
  */
-public class Tools {
+public class Tools extends org.apache.commons.lang3.StringUtils {
 
     public static boolean isEmpty(Object obj) {
         if (obj == null) {

@@ -37,7 +37,8 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = {BusinessException.class})
     public BaseResult<Object> handleBusinessException(Exception e) {
-        if (e instanceof BusinessException businessException) {
+        if (e instanceof BusinessException) {
+            BusinessException businessException = (BusinessException) e;
             return BaseResult.error(businessException.getCode(), businessException.getMessage());
         } else {
             log.error("Business Exception:" + e.getMessage(), e);
@@ -56,9 +57,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = {ServletException.class})
     public BaseResult<Object> handleServletException(ServletException e) {
 
-        if (e instanceof HttpRequestMethodNotSupportedException httpRequestMethodNotSupportedException) {
+        if (e instanceof HttpRequestMethodNotSupportedException) {
+            HttpRequestMethodNotSupportedException httpRequestMethodNotSupportedException = (HttpRequestMethodNotSupportedException) e;
             return BaseResult.error(500, "请求方法有误", httpRequestMethodNotSupportedException.getMessage());
-        } else if (e instanceof MissingServletRequestParameterException missingServletRequestParameterException) {
+        } else if (e instanceof MissingServletRequestParameterException) {
+            MissingServletRequestParameterException missingServletRequestParameterException = (MissingServletRequestParameterException) e;
             return BaseResult.error(400, "缺少必要的请求参数", missingServletRequestParameterException.getMessage());
         } else {
             log.error("Servlet Exception:" + e.getMessage(), e);
@@ -76,9 +79,11 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value = {RuntimeException.class})
     public BaseResult<Object> handleRuntimeException(RuntimeException e) {
-        if (e instanceof NullPointerException nullPointerException) {
+        if (e instanceof NullPointerException) {
+            NullPointerException nullPointerException = (NullPointerException) e;
             return BaseResult.error(500, "空指针异常", nullPointerException.getMessage());
-        } else if (e instanceof IllegalArgumentException illegalArgumentException) {
+        } else if (e instanceof IllegalArgumentException) {
+            IllegalArgumentException illegalArgumentException = (IllegalArgumentException) e;
             return BaseResult.error(500, "非法参数异常", illegalArgumentException.getMessage());
         } else {
             log.error("System Exception:" + e.getMessage(), e);

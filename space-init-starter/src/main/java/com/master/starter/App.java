@@ -11,12 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  * @date 2023-11-18 10:43
  */
-@SpringBootApplication(scanBasePackages = {
-        "com.master.web.controller",
-        "com.master.service",
-        "com.master.common.handler",
-        "com.master.common.config"
-})
+@SpringBootApplication(
+        scanBasePackages = {
+                "com.master.web.controller",
+                "com.master.service",
+                "com.master.common.handler",
+                "com.master.common.config"
+        }
+)
 @MapperScan(basePackages = {"com.master.repository.mapper"})
 public class App {
 

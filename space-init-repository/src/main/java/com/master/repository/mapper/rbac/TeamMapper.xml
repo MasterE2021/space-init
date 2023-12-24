@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.TeamMapper">
+
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.TeamPO">
+        <id property="teamId" column="team_id_" jdbcType="VARCHAR"/>
+        <result property="teamName" column="team_name_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select team_id_,
+               team_name_
+        from rbac_team
+        where team_id_ = #{teamId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_team
+        where team_id_ = #{teamId}
+    </delete>
+
+
+    <insert id="insert" keyColumn="team_id_" keyProperty="teamId" parameterType="com.master.repository.entity.rbac.TeamPO"
+            useGeneratedKeys="true">
+        insert into rbac_team
+            (team_id_, team_name_)
+        values (#{teamId}, #{teamName})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="team_id_" keyProperty="teamId" parameterType="com.master.repository.entity.rbac.TeamPO"
+            useGeneratedKeys="true">
+        insert into rbac_team
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="teamId != null">
+                team_id_,
+            </if>
+            <if test="teamName != null">
+                team_name_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="teamId != null">
+                #{teamId},
+            </if>
+            <if test="teamName != null">
+                #{teamName},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.TeamPO">
+        update rbac_team
+        <set>
+            <if test="teamName != null">
+                team_name_ = #{teamName},
+            </if>
+        </set>
+        where team_id_ = #{teamId}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.TeamPO">
+        update rbac_team
+        set team_name_ = #{teamName}
+        where team_id_ = #{teamId}
+    </update>
+</mapper>

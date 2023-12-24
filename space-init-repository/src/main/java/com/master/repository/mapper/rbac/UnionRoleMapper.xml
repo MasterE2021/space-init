@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.UnionRoleMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.UnionRolePO">
+        <id property="id" column="id_" jdbcType="VARCHAR"/>
+        <result property="unionId" column="union_id_" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id_,
+               union_id_,
+               role_id_
+        from rbac_union_role
+        where id_ = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_union_role
+        where id_ = #{id}
+    </delete>
+
+
+    <insert id="insert" keyColumn="id_" keyProperty="id" parameterType="com.master.repository.entity.rbac.UnionRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_union_role
+            (id_, union_id_, role_id_)
+        values (#{id}, #{unionId}, #{roleId})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="id_" keyProperty="id"
+            parameterType="com.master.repository.entity.rbac.UnionRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_union_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id_,
+            </if>
+            <if test="unionId != null">
+                union_id_,
+            </if>
+            <if test="roleId != null">
+                role_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="unionId != null">
+                #{unionId},
+            </if>
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.UnionRolePO">
+        update rbac_union_role
+        <set>
+            <if test="unionId != null">
+                union_id_ = #{unionId},
+            </if>
+            <if test="roleId != null">
+                role_id_ = #{roleId},
+            </if>
+        </set>
+        where id_ = #{id}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.UnionRolePO">
+        update rbac_union_role
+        set union_id_ = #{unionId},
+            role_id_  = #{roleId}
+        where id_ = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.PositionMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.PositionPO">
+        <id property="positionId" column="position_id_" jdbcType="VARCHAR"/>
+        <result property="positionName" column="position_name_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select position_id_,
+               position_name_,
+               parent_id_
+        from rbac_position
+        where position_id_ = #{positionId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_position
+        where position_id_ = #{positionId}
+    </delete>
+
+    <insert id="insert" keyColumn="position_id_" keyProperty="positionId"
+            parameterType="com.master.repository.entity.rbac.PositionPO"
+            useGeneratedKeys="true">
+        insert into rbac_position
+            (position_id_, position_name_, parent_id_)
+        values (#{positionId}, #{positionName}, #{parentId})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="position_id_" keyProperty="positionId"
+            parameterType="com.master.repository.entity.rbac.PositionPO" useGeneratedKeys="true">
+        insert into rbac_position
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="positionId != null">
+                position_id_,
+            </if>
+            <if test="positionName != null">
+                position_name_,
+            </if>
+            <if test="parentId != null">
+                parent_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="positionId != null">
+                #{positionId},
+            </if>
+            <if test="positionName != null">
+                #{positionName},
+            </if>
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.PositionPO">
+        update rbac_position
+        <set>
+            <if test="positionName != null">
+                position_name_ = #{positionName},
+            </if>
+            <if test="parentId != null">
+                parent_id_ = #{parentId},
+            </if>
+        </set>
+        where position_id_ = #{positionId}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.PositionPO">
+        update rbac_position
+        set position_name_ = #{positionName},
+            parent_id_     = #{parentId}
+        where position_id_ = #{positionId}
+    </update>
+</mapper>

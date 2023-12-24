@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.PositionRoleMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.PositionRolePO">
+        <id property="id" column="id_" jdbcType="VARCHAR"/>
+        <result property="positionId" column="position_id_" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id_,
+               position_id_,
+               role_id_
+        from rbac_position_role
+        where id_ = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_position_role
+        where id_ = #{id}
+    </delete>
+
+    <insert id="insert" keyColumn="id_" keyProperty="id" parameterType="com.master.repository.entity.rbac.PositionRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_position_role
+            (id_, position_id_, role_id_)
+        values (#{id}, #{positionId}, #{roleId})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="id_" keyProperty="id"
+            parameterType="com.master.repository.entity.rbac.PositionRolePO" useGeneratedKeys="true">
+        insert into rbac_position_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id_,
+            </if>
+            <if test="positionId != null">
+                position_id_,
+            </if>
+            <if test="roleId != null">
+                role_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="positionId != null">
+                #{positionId},
+            </if>
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.PositionRolePO">
+        update rbac_position_role
+        <set>
+            <if test="positionId != null">
+                position_id_ = #{positionId},
+            </if>
+            <if test="roleId != null">
+                role_id_ = #{roleId},
+            </if>
+        </set>
+        where id_ = #{id}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.PositionRolePO">
+        update rbac_position_role
+        set position_id_ = #{positionId},
+            role_id_     = #{roleId}
+        where id_ = #{id}
+    </update>
+</mapper>

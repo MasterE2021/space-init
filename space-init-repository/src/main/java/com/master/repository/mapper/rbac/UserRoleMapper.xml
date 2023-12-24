@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.UserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.UserRolePO">
+        <id property="id" column="id_" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id_" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select id_,
+               user_id_,
+               role_id_
+        from rbac_user_role
+        where id_ = #{id}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_user_role
+        where id_ = #{id}
+    </delete>
+
+
+    <insert id="insert" keyColumn="id_" keyProperty="id" parameterType="com.master.repository.entity.rbac.UserRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_user_role
+            (id_, user_id_, role_id_)
+        values (#{id}, #{userId}, #{roleId})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="id_" keyProperty="id"
+            parameterType="com.master.repository.entity.rbac.UserRolePO"
+            useGeneratedKeys="true">
+        insert into rbac_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id_,
+            </if>
+            <if test="userId != null">
+                user_id_,
+            </if>
+            <if test="roleId != null">
+                role_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="userId != null">
+                #{userId},
+            </if>
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.UserRolePO">
+        update rbac_user_role
+        <set>
+            <if test="userId != null">
+                user_id_ = #{userId},
+            </if>
+            <if test="roleId != null">
+                role_id_ = #{roleId},
+            </if>
+        </set>
+        where id_ = #{id}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.UserRolePO">
+        update rbac_user_role
+        set user_id_ = #{userId},
+            role_id_ = #{roleId}
+        where id_ = #{id}
+    </update>
+</mapper>

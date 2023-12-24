@@ -3,8 +3,8 @@ package com.master.service.user.impl;
 import com.master.api.vo.UserVO;
 import com.master.common.exception.BusinessException;
 import com.master.common.utils.Tools;
-import com.master.repository.entity.UserPO;
-import com.master.repository.mapper.UserMapper;
+import com.master.repository.entity.rbac.UserPO;
+import com.master.repository.mapper.rbac.UserMapper;
 import com.master.service.user.UserService;
 import org.springframework.stereotype.Service;
 

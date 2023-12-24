@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.master.repository.mapper.rbac.UnionMapper">
+    <resultMap id="BaseResultMap" type="com.master.repository.entity.rbac.UnionPO">
+        <id property="unionId" column="union_id_" jdbcType="VARCHAR"/>
+        <result property="unionName" column="union_name_" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id_" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select union_id_,
+               union_name_,
+               parent_id_
+        from rbac_union
+        where union_id_ = #{unionId}
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from rbac_union
+        where union_id_ = #{unionId}
+    </delete>
+
+
+    <insert id="insert" keyColumn="union_id_" keyProperty="unionId" parameterType="com.master.repository.entity.rbac.UnionPO"
+            useGeneratedKeys="true">
+        insert into rbac_union
+            (union_id_, union_name_, parent_id_)
+        values (#{unionId}, #{unionName}, #{parentId})
+    </insert>
+
+
+    <insert id="insertSelective" keyColumn="union_id_" keyProperty="unionId"
+            parameterType="com.master.repository.entity.rbac.UnionPO"
+            useGeneratedKeys="true">
+        insert into rbac_union
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="unionId != null">
+                union_id_,
+            </if>
+            <if test="unionName != null">
+                union_name_,
+            </if>
+            <if test="parentId != null">
+                parent_id_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="unionId != null">
+                #{unionId},
+            </if>
+            <if test="unionName != null">
+                #{unionName},
+            </if>
+            <if test="parentId != null">
+                #{parentId},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.master.repository.entity.rbac.UnionPO">
+        update rbac_union
+        <set>
+            <if test="unionName != null">
+                union_name_ = #{unionName},
+            </if>
+            <if test="parentId != null">
+                parent_id_ = #{parentId},
+            </if>
+        </set>
+        where union_id_ = #{unionId}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.master.repository.entity.rbac.UnionPO">
+        update rbac_union
+        set union_name_ = #{unionName},
+            parent_id_  = #{parentId}
+        where union_id_ = #{unionId}
+    </update>
+</mapper>

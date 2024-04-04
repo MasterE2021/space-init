@@ -15,6 +15,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = {"com.master.repository.mapper"})
 public class App {
 
+    static {
+        System.setProperty("proxyType", "4");
+        System.setProperty("proxyPort", "7890");
+        System.setProperty("proxyHost", "127.0.0.1");
+        System.setProperty("proxySet", "true");
+    }
+
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);

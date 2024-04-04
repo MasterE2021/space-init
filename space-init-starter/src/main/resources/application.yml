@@ -12,11 +12,14 @@ spring:
   profiles:
     # 加载不同模块的配置文件
     active: mapper
+  ai:
+    openai:
+      api-key: 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
 
 logging:
   level:
     # root: DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN
-    root: DEBUG
+    root: info
     com.master.springboot:
       # 指定打印对应文件夹的日志，并设置打印的日志的级别 （com.master.springboot.mapper包）
       mapper: debug

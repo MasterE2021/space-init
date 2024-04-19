@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author yiqunjie
- * @description
+ * @description OpenAI购买地址 https://eylink.cn/buy/4
  * @date 2024-04-04 14:39
  */
 @RestController
@@ -21,6 +21,11 @@ public class AiController {
     private AiService aiService;
 
 
+    /**
+     * @param questions AI问题
+     *
+     * @return BaseResult
+     */
     @PostMapping("/chat")
     public BaseResult<String> chat(@RequestBody String questions) {
         String answers = aiService.chat(questions);
